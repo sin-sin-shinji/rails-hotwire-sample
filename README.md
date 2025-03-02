@@ -1,24 +1,33 @@
-# README
+## 環境構築
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### **1. 必要なもの**
+- [Git](https://git-scm.com/)
+- [Docker](https://www.docker.com/)
+- Ruby 3.4.2
+- Rails 8.0.1
+- MySQL 8.4
 
-Things you may want to cover:
+### **2. セットアップ手順**
 
-* Ruby version
+* リポジトリをクローン
 
-* System dependencies
+```sh
+git clone https://github.com/sin-sin-shinji/rails-hotwire-sample.git
+cd rails-hotwire-sample
+```
 
-* Configuration
+* Dockerを使用する場合
 
-* Database creation
+```sh
+# Build docker
+docker-compose build
 
-* Database initialization
+# Install gems
+docker-compose run --rm app bundle install
 
-* How to run the test suite
+# DB migration
+docker-compose run --rm app rails db:create db:migrate
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Start server
+docker-compose up -d
+```
