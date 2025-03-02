@@ -7,6 +7,7 @@ RUN apt-get update -qq \
     &&  apt-get install -y --no-install-recommends \
         build-essential \
         default-mysql-client \
+        libmariadb-dev \
         libyaml-dev \
         pkg-config \
     && rm -rf /var/lib/apt/lists/*
