@@ -7,6 +7,8 @@ RUN apt-get update -qq \
     &&  apt-get install -y --no-install-recommends \
         build-essential \
         default-mysql-client \
+        libyaml-dev \
+        pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir $APP_ROOT
