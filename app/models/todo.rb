@@ -17,8 +17,17 @@ class Todo < ApplicationRecord
   validates :title, presence: true
   validates :position, presence: true, numericality: { only_integer: true }
 
+  # コールバック
+  before_validation :set_position, on: :create
+
   # スコープ
   scope :pending_todos, -> { where(status: :pending).order(position: :asc) }
   scope :completed_todos, -> { where(status: :completed).order(position: :asc) }
   scope :ordered, -> { order(position: :asc) }
+
+  private
+
+  def set_position
+    self.position = Todo.maximum(:position).to_i + 1
+  end
 end
