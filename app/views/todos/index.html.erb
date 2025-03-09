@@ -1,0 +1,26 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-6">未対応のTodo一覧</h1>
+
+  <div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <% if @todos.present? %>
+      <ul class="divide-y divide-gray-200">
+        <% @todos.each do |todo| %>
+          <li class="p-4 hover:bg-gray-50" id="todo-<%= todo.id %>">
+            <div class="flex items-start">
+              <div class="flex-1">
+                <h3 class="text-lg font-medium text-gray-900"><%= todo.title %></h3>
+                <% if todo.description.present? %>
+                  <p class="mt-1 text-sm text-gray-600"><%= todo.description %></p>
+                <% end %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <div class="p-4 text-center text-gray-500">
+        未対応のTodoはありません
+      </div>
+    <% end %>
+  </div>
+</div>
