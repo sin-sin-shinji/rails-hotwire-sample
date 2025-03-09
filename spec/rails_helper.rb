@@ -8,6 +8,9 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 # that will avoid rails generators crashing because migrations haven't been run yet
 # return unless Rails.env.test?
 require 'rspec/rails'
+require 'capybara/rspec'
+require 'playwright'
+require 'capybara/playwright'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -78,3 +81,16 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+# Playwright 用の Capybara ドライバを登録
+Capybara.register_driver :playwright do |app|
+  Capybara::Playwright::Driver.new(
+    app,
+    browser_type: :chromium, # :firefox, :webkit も利用可能
+    headless: true # デバッグ時は false に変更可能
+  )
+end
+
+Capybara.default_driver = :playwright
+Capybara.javascript_driver = :playwright
+Capybara.default_max_wait_time = 5

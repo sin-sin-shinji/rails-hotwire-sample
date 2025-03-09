@@ -55,6 +55,9 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "spring-commands-rspec"
   gem "shoulda-matchers"
+  gem "capybara"
+  gem "playwright-ruby-client"
+  gem "capybara-playwright-driver"
 end
 
 group :development do
