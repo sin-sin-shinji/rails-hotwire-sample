@@ -50,7 +50,8 @@ group :development, :test do
   # RSpec testing framework
   gem "rspec-rails"
   gem "factory_bot_rails"
-  gem 'spring-commands-rspec'
+  gem "spring-commands-rspec"
+  gem "shoulda-matchers"
 end
 
 group :development do
