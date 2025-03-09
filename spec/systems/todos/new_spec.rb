@@ -64,7 +64,7 @@ RSpec.describe "Todo新規作成", type: :system do
 
         # エラーメッセージが表示されることを確認
         expect(page).to have_content("入力内容に1個のエラーがあります")
-        expect(page).to have_content("Title can't be blank")
+        expect(page).to have_content("タイトルを入力してください")
 
         # データベースに保存されていないことを確認（レコード件数が増えていないこと）
         expect(Todo.count).to eq(todo_count_before)

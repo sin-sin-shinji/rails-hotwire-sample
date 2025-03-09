@@ -1,0 +1,34 @@
+ja:
+  activerecord:
+    models:
+      todo: タスク
+    attributes:
+      todo:
+        title: タイトル
+        description: 詳細
+        status: ステータス
+        position: 表示順
+        created_at: 作成日時
+        updated_at: 更新日時
+    errors:
+      models:
+        todo:
+          attributes:
+            title:
+              blank: を入力してください
+            position:
+              blank: を入力してください
+              not_a_number: は数値で入力してください
+              not_an_integer: は整数で入力してください
+
+  enums:
+    todo:
+      status:
+        pending: 未対応
+        completed: 完了済み
+
+  errors:
+    messages:
+      blank: を入力してください
+      not_a_number: は数値で入力してください
+      not_an_integer: は整数で入力してください
