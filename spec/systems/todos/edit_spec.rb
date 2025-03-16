@@ -80,7 +80,7 @@ RSpec.describe "Todo更新", type: :system do
 
         # エラーメッセージが表示されることを確認
         expect(page).to have_content("入力内容に1個のエラーがあります")
-        expect(page).to have_content("Title can't be blank")
+        expect(page).to have_content("タイトルを入力してください")
       end
 
       it "データベースの内容が変更されないこと" do
