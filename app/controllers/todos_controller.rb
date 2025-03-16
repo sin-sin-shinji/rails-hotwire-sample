@@ -32,7 +32,7 @@ class TodosController < ApplicationController
 
   def complete
     @todo.completed!
-    redirect_to todos_path, notice: "Todoを完了状態に更新しました。"
+    flash.now.notice = "Todoを完了状態に更新しました。"
   end
 
   private
