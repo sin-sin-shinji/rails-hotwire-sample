@@ -22,8 +22,16 @@
                   <p class="mt-1 text-sm text-gray-600"><%= todo.description %></p>
                 <% end %>
               </div>
-              <div class="ml-4">
+              <div class="ml-4 flex space-x-3">
                 <%= link_to "更新", edit_todo_path(todo), class: "text-blue-600 hover:text-blue-800" %>
+                <%= button_to "対応完了",
+                    complete_todo_path(todo),
+                    method: :patch,
+                    class: "text-green-600 hover:text-green-800 bg-transparent border-none cursor-pointer",
+                    form: {
+                      onsubmit: "return confirm('「#{todo.title}」を対応完了に変更しますか？');"
+                    }
+                %>
               </div>
             </div>
           </li>

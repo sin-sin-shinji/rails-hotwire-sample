@@ -1,5 +1,5 @@
 class TodosController < ApplicationController
-  before_action :set_todo, only: [ :edit, :update ]
+  before_action :set_todo, only: [ :edit, :update, :complete ]
 
   def index
     @todos = Todo.pending_todos
@@ -28,6 +28,11 @@ class TodosController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def complete
+    @todo.completed!
+    redirect_to todos_path, notice: "Todoを完了状態に更新しました。"
   end
 
   private
