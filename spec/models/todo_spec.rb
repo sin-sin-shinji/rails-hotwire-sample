@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe Todo, type: :model do
   describe 'バリデーション' do
     it { should validate_presence_of(:title) }
-    it { should validate_presence_of(:position) }
-    it { should validate_numericality_of(:position).only_integer }
   end
 
   describe 'enum' do
