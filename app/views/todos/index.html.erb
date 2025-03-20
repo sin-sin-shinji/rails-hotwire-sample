@@ -14,28 +14,7 @@
         <ul class="divide-y divide-gray-200">
           <% @todos.each do |todo| %>
             <%= turbo_frame_tag todo do %>
-              <li class="p-4 hover:bg-gray-50" id="todo-<%= todo.id %>" aria-label="Todo: <%= todo.title %>">
-                <div class="flex items-start justify-between">
-                  <div class="flex-1">
-                    <h3 class="text-lg font-medium text-gray-900"><%= todo.title %></h3>
-                    <% if todo.description.present? %>
-                      <p class="mt-1 text-sm text-gray-600"><%= todo.description %></p>
-                    <% end %>
-                  </div>
-                  <div class="ml-4 flex space-x-3">
-                    <%= link_to "更新", edit_todo_path(todo), class: "text-blue-600 hover:text-blue-800" %>
-                    <%= button_to "対応完了",
-                        complete_todo_path(todo),
-                        method: :patch,
-                        class: "text-green-600 hover:text-green-800 bg-transparent border-none cursor-pointer",
-                        data: {
-                          turbo_confirm: "「#{todo.title}」を対応完了に変更しますか？",
-                          turbo_stream: true
-                        }
-                    %>
-                  </div>
-                </div>
-              </li>
+              <%= render "todo", todo: todo %>
             <% end %>
           <% end %>
         </ul>

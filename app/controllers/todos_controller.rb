@@ -24,7 +24,10 @@ class TodosController < ApplicationController
 
   def update
     if @todo.update(todo_params)
-      redirect_to todos_path, notice: "Todoが正常に更新されました。"
+      respond_to do |format|
+        format.html { redirect_to todos_path, notice: "Todoが正常に更新されました。" }
+        format.turbo_stream { flash.now.notice = "Todoが正常に更新されました。" }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
