@@ -1,0 +1,10 @@
+<%= turbo_stream.update "todos-container" do %>
+  <%= render "todo_list", todos: @todos %>
+<% end %>
+
+<%= turbo_stream.update "flash" do %>
+  <%= render "flash" %>
+<% end %>
+
+<%= turbo_stream.update :remote_modal do %>
+<% end %>

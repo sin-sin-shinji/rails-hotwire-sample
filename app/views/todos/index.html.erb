@@ -1,28 +1,14 @@
 <div class="container mx-auto px-4 py-8">
   <div class="flex justify-between items-center mb-6">
     <h1 class="text-2xl font-bold">未対応のTodo一覧</h1>
-    <%= link_to "新規追加", new_todo_path, class: "bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded" %>
+    <%= link_to "新規追加", new_todo_path, class: "bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded", data: { turbo_frame: :remote_modal } %>
   </div>
 
   <div id="flash">
     <%= render "flash" %>
   </div>
 
-  <div class="bg-white shadow-md rounded-lg overflow-hidden">
-    <% if @todos.present? %>
-      <%= turbo_frame_tag "todo-list" do %>
-        <ul class="divide-y divide-gray-200">
-          <% @todos.each do |todo| %>
-            <%= turbo_frame_tag todo do %>
-              <%= render "todo", todo: todo %>
-            <% end %>
-          <% end %>
-        </ul>
-      <% end %>
-    <% else %>
-      <div class="p-4 text-center text-gray-500">
-        未対応のTodoはありません
-      </div>
-    <% end %>
+  <div id="todos-container" class="bg-white shadow-md rounded-lg overflow-hidden">
+    <%= render "todo_list", todos: @todos %>
   </div>
 </div>

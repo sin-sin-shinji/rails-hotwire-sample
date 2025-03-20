@@ -1,0 +1,15 @@
+<% if todos.present? %>
+  <%= turbo_frame_tag "todo-list" do %>
+    <ul class="divide-y divide-gray-200">
+      <% todos.each do |todo| %>
+        <%= turbo_frame_tag todo do %>
+          <%= render "todo", todo: todo %>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+<% else %>
+  <div class="p-4 text-center text-gray-500">
+    未対応のTodoはありません
+  </div>
+<% end %>

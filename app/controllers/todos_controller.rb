@@ -13,7 +13,13 @@ class TodosController < ApplicationController
     @todo = Todo.new(todo_params)
 
     if @todo.save
-      redirect_to todos_path, notice: "Todoが正常に作成されました。"
+      # Todo一覧を再取得
+      @todos = Todo.pending_todos
+      # ページ内容へ反映
+      respond_to do |format|
+        format.html { redirect_to todos_path, notice: "Todoが正常に作成されました。" }
+        format.turbo_stream { flash.now.notice = "Todoが正常に作成されました。" }
+      end
     else
       render :new, status: :unprocessable_entity
     end
