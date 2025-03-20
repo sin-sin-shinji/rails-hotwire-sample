@@ -1,0 +1,11 @@
+<%= turbo_stream.replace @todo do %>
+  <%= turbo_frame_tag @todo do %>
+    <%= render "todo", todo: @todo %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update "flash" do %>
+  <%= render "flash" %>
+<% end %>
+
+<%= turbo_stream.remove "todo_form_modal" %>

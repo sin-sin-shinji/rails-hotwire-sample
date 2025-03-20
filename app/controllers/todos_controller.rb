@@ -13,7 +13,13 @@ class TodosController < ApplicationController
     @todo = Todo.new(todo_params)
 
     if @todo.save
-      redirect_to todos_path, notice: "Todoが正常に作成されました。"
+      # Todo一覧を再取得
+      @todos = Todo.pending_todos
+      # ページ内容へ反映
+      respond_to do |format|
+        format.html { redirect_to todos_path, notice: "Todoが正常に作成されました。" }
+        format.turbo_stream { flash.now.notice = "Todoが正常に作成されました。" }
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -24,7 +30,10 @@ class TodosController < ApplicationController
 
   def update
     if @todo.update(todo_params)
-      redirect_to todos_path, notice: "Todoが正常に更新されました。"
+      respond_to do |format|
+        format.html { redirect_to todos_path, notice: "Todoが正常に更新されました。" }
+        format.turbo_stream { flash.now.notice = "Todoが正常に更新されました。" }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -32,7 +41,7 @@ class TodosController < ApplicationController
 
   def complete
     @todo.completed!
-    redirect_to todos_path, notice: "Todoを完了状態に更新しました。"
+    flash.now.notice = "Todoを完了状態に更新しました。"
   end
 
   private

@@ -1,0 +1,4 @@
+<%= turbo_stream.remove @todo %>
+<%= turbo_stream.update "flash" do %>
+  <%= render "flash" %>
+<% end %>

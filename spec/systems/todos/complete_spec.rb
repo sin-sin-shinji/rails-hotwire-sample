@@ -28,16 +28,16 @@ RSpec.describe "Todo対応完了", type: :system do
     end
 
     context "確認ダイアログで「OK」をクリックした場合", js: true do
-      it "Todoのステータスが「completed」に変更され、一覧から削除されること" do
+      it "Todoのステータスが「completed」に変更され、一覧から非同期で削除されること" do
         # 対応完了ボタンをクリック（OKを選択）
         page.accept_confirm("「テスト用Todo」を対応完了に変更しますか？") do
           click_button "対応完了"
         end
 
-        # ページがリロードされ、成功メッセージが表示されることを確認
-        expect(page).to have_content("Todoを完了状態に更新しました。")
+        # Turbo Streamによる非同期更新を待機
+        expect(page).to have_content("Todoを完了状態に更新しました。", wait: 5)
 
-        # Todoが一覧から削除されていることを確認（ページリロード後）
+        # Todoが一覧から非同期で削除されていることを確認
         expect(page).not_to have_content("テスト用Todo")
 
         # データベース上でステータスが変更されていることを確認
